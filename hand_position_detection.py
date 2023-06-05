@@ -23,6 +23,8 @@ while True:
                 if id == 20:
                     cv2.circle(image, (cx, cy), 10, (255, 0, 255), cv2.FILLED) # image, coordinates, radius, color (magenta), fill
 
+                if id == 0:
+                    id_0_x, id_0_y = cx, cy
                 if id == 1:
                     id_1_x, id_1_y = cx, cy
                 if id == 2:
@@ -69,8 +71,12 @@ while True:
                                   connection_drawing_spec=mpDraw.DrawingSpec(color=(0, 255, 0), thickness=2))
             
             # Thumbs up
-            if (10 < abs(id_2_y - id_5_y) and abs(id_2_y - id_5_y) < 30 and abs(id_5_x - id_8_x) < 50):
+            if (10 < abs(id_2_y - id_5_y) and abs(id_2_y - id_5_y) < 30 and abs(id_5_x - id_8_x) < 50 and id_4_y < id_0_y):
                 cv2.putText(image, "Thumbs Up", (20, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+
+            # Thumbs down
+            if (10 < abs(id_2_y - id_5_y) and abs(id_2_y - id_5_y) < 30 and abs(id_5_x - id_8_x) < 50 and id_4_y > id_0_y):
+                cv2.putText(image, "Thumbs Down", (20, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
 
     cv2.imshow("Output", image)

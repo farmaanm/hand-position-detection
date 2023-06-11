@@ -70,13 +70,21 @@ while True:
                                   landmark_drawing_spec=mpDraw.DrawingSpec(color=(0, 0, 255), thickness=2, circle_radius=2),
                                   connection_drawing_spec=mpDraw.DrawingSpec(color=(0, 255, 0), thickness=2))
             
+            text = ""
+            
             # Thumbs up
             if (10 < abs(id_2_y - id_5_y) and abs(id_2_y - id_5_y) < 30 and abs(id_5_x - id_8_x) < 50 and id_4_y < id_0_y):
-                cv2.putText(image, "Thumbs Up", (20, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+                text = "Thumbs Up"
 
             # Thumbs down
             if (10 < abs(id_2_y - id_5_y) and abs(id_2_y - id_5_y) < 30 and abs(id_5_x - id_8_x) < 50 and id_4_y > id_0_y):
-                cv2.putText(image, "Thumbs Down", (20, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+                text = "Thumbs Down"
+
+            # Stop
+            if ((id_4_y < id_0_y) and (id_8_y < id_0_y) and (id_12_y < id_0_y) and (id_16_y < id_0_y) and (id_20_y < id_0_y) and (id_8_y < id_6_y) and (id_12_y < id_10_y) and (id_16_y < id_14_y) and (id_20_y < id_18_y)):
+                text = "Stop"
+                
+            cv2.putText(image, text, (20, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
 
     cv2.imshow("Output", image)
